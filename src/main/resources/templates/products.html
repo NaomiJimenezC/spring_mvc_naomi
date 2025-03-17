@@ -1,0 +1,28 @@
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${#numbers.formatDecimal(product.price, 1, 2)} + ' €'"></td>
+        <td th:text="${product.description}"></td>
+        <td>
+            <!-- Botón de editar -->
+            <a th:href="@{'/products/' + ${product.id} + '/edit'}" class="btn btn-primary">Editar</a>
+
+            <!-- Botón de eliminar -->
+            <form th:action="@{'/products/' + ${product.id} + '/delete'}" method="post" style="display: inline;">
+                <button type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')" class="btn btn-danger">Eliminar</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>

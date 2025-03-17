@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestión de Productos</title>
+</head>
+<body>
+<header>
+    <h1>Bienvenido a la Gestión de Productos</h1>
+</header>
+<main>
+    <p>Este es el punto de partida de tu proyecto. A continuación, implementa las siguientes funcionalidades:</p>
+    <ul>
+        <li><a th:href="@{/products}">Listar productos</a></li>
+        <li><a th:href="@{/products/new}"> Crear nuevos productos.</a> </li>
+
+        <li>Editar productos existentes.</li>
+        <li>Eliminar productos.</li>
+    </ul>
+    <p>Consulta el archivo <strong>README.md</strong> para obtener más detalles.</p>
+</main>
+<footer>
+    <p>Plantilla inicial creada para la tarea de Spring MVC.</p>
+</footer>
+</body>
+</html>

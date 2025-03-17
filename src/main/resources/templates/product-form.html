@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${product.id == null ? 'Nuevo Producto' : 'Editar Producto'}">Producto</title>
+</head>
+<body>
+<h1 th:text="${product.id == null ? 'Crear Nuevo Producto' : 'Editar Producto'}">Producto</h1>
+
+<form th:action="${product.id == null ? '/products' : '/products/' + product.id}"
+      th:object="${product}" method="post">
+
+
+    <input type="hidden" th:field="*{id}">
+    <div>
+        <label for="name">Nombre:</label>
+        <input type="text" id="name" th:field="*{name}" required>
+    </div>
+    <div>
+        <label for="price">Precio:</label>
+        <input type="number" id="price" th:field="*{price}" step="0.01" required>
+    </div>
+    <div>
+        <label for="description">Descripción:</label>
+        <textarea id="description" th:field="*{description}"></textarea>
+    </div>
+    <button type="submit">Guardar Producto</button>
+</form>
+
+<!-- Botón de eliminar (solo visible en modo edición) -->
+<form th:if="${product.id != null}" th:action="@{/products/{id}/delete(id=${product.id})}" method="post">
+    <button type="submit" onclick="return confirm('¿Estás seguro de que quieres eliminar este producto?')">
+        Eliminar Producto
+    </button>
+</form>
+
+<a th:href="@{/products}">Volver a la lista de productos</a>
+</body>
+</html>
